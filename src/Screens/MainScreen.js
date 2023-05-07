@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { ImageProps, StyleSheet, View } from 'react-native';
-import { ApplicationProvider, Layout, Text, Button, Spinner ,Icon } from '@ui-kitten/components';
+import { ApplicationProvider, Layout, Text, Button, ButtonGroup, Spinner ,Icon } from '@ui-kitten/components';
 import { Audio } from 'expo-av';
 
 import {
@@ -71,8 +71,11 @@ const MainScreen = () => {
       flexDirection: 'row',
       flexWrap: 'wrap',
     },
-    button: {
+    button10: {
       margin: "10%",
+    },
+    button5: {
+      margin: "5%",
     },
     indicator: {
       justifyContent: 'center',
@@ -97,23 +100,11 @@ const MainScreen = () => {
             録 音 中 
           </Text>
         }
-        
-        <Button
-          onPress = {()=>{
-            callExcuse();
-          }}
-          style={styles.button}
-          status='primary'
-          size='giant'
-          disabled={recordingStatus}
-        >
-          すいませーん
-        </Button>
         <Button
           onPress = {()=>{
             recordingExcuse();
           }}
-          style={styles.button}
+          style={styles.button5}
           status='success'
           size='giant'
         >
@@ -123,7 +114,7 @@ const MainScreen = () => {
           onPress = {()=>{
             recordingStopExcuse();
           }}
-          style={styles.button}
+          style={styles.button5}
           status='danger'
           size='giant'
         >
@@ -131,11 +122,24 @@ const MainScreen = () => {
         </Button>
         <Button
           onPress = {()=>{
+            callExcuse();
+          }}
+          style={styles.button10}
+          status='primary'
+          size='giant'
+          disabled={recordingStatus}
+          // appearance='outline'
+        >
+          すいませーん{recordingUri != "" &&  "\n（録音音源）"}
+        </Button>
+        <Button
+          onPress = {()=>{
             setRecordingUri("");
           }}
-          style={styles.button}
+          style={styles.button5}
           status='primary'
           size='small'
+          appearance='ghost'
         >
           音源リセット
         </Button>
